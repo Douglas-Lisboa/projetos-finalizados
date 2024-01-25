@@ -1,0 +1,46 @@
+<head>
+   <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script>
+    google.charts.load('current', {packages: ['corechart']});
+    google.charts.setOnLoadCallback(desenharPizza);
+
+    function desenharPizza() {
+      // Define the chart to be drawn.
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'categoria');
+      data.addColumn('number', 'valores');
+      data.addRows([
+        ['educação', 2000],
+        ['lazer', 1500],
+        ['carro', 500],
+        ['parcelas', 200],
+        ['outros', 750]
+      ]);
+
+      var opcoes = {
+          'title': 'Tipo de gastos',
+          'height': 500,
+          'width': 900,
+          is3D: true,
+          legend: 'labeled',
+          pieSliceText: 'value',
+          //colors: [] -- Escolher um por um as cores da tabela
+          slices: {
+          1:{color: 'grey'},
+          2:{color: '#a6a6a6'},
+          3:{color: 'grey'},
+          4:{offset: 0.4},
+          5:{color: 'grey'}
+          } //-- Escolher determinadas cores para o grafico,
+          //mas deu errado
+      };
+      // Instantiate and draw the chart.
+      var grafico = new google.visualization.PieChart(document.getElementById('graficoPizza'));
+      grafico.draw(data, opcoes, null);
+    }
+  </script>
+</head>
+<body>
+  <!-- Identify where the chart should be drawn. -->
+  <div id="graficoPizza"/>
+</body>
